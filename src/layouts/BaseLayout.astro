@@ -1,0 +1,39 @@
+---
+import '../styles/global.css';
+interface Props {
+  title: string;
+  description: string;
+  language?: 'pt-PT' | 'en-GB';
+  translation?: { url: string; language: string };
+}
+const { title, description, language = 'pt-PT', translation } = Astro.props;
+const en = language === 'en-GB';
+---
+<!doctype html>
+<html lang={language}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    {translation && <link rel="alternate" hreflang={translation.language} href={new URL(translation.url, Astro.site)} />}
+    <link rel="alternate" type="application/rss+xml" title="Blog RSS" href="/rss.xml" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{en ? 'Skip to content' : 'Saltar para o conteúdo'}</a>
+    <header class="site-header">
+      <a class="brand" href="/">Astro / Markdown <span>LAB</span></a>
+      <nav aria-label={en ? 'Main navigation' : 'Navegação principal'}>
+        <a href="/blog/">Blog</a>
+        <a href="/blog/pt/" lang="pt-PT">Português</a>
+        <a href="/blog/en/" lang="en-GB">English</a>
+      </nav>
+    </header>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer>{en ? 'Isolated prototype · Test content · No production deployment' : 'Protótipo isolado · Conteúdo de teste · Sem publicação em produção'}</footer>
+  </body>
+</html>

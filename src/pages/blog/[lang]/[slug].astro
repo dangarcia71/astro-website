@@ -1,0 +1,29 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { publishedPosts, languagePath, postUrl, dateLabel, taxonomySlug, type Post } from '../../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await publishedPosts();
+  return posts.map((post) => ({
+    params: { lang: languagePath(post.data.language), slug: post.data.slug },
+    props: { post, translated: posts.find((other) => other.data.language !== post.data.language && other.data.slug === post.data.translation) },
+  }));
+}
+interface Props { post: Post; translated?: Post }
+const { post, translated } = Astro.props;
+const { Content } = await render(post);
+const en = post.data.language === 'en-GB';
+---
+<BaseLayout title={post.data.title} description={post.data.excerpt} language={post.data.language}
+  translation={translated ? { url: postUrl(translated), language: translated.data.language } : undefined}>
+  <article class="article">
+    <a href={`/blog/${languagePath(post.data.language)}/`}>{en ? '← Back to blog' : '← Voltar ao blog'}</a>
+    <h1>{post.data.title}</h1>
+    <p class="meta"><time datetime={post.data.date.toISOString()}>{dateLabel(post)}</time> · <a href={`/blog/category/${taxonomySlug(post.data.category)}/`}>{post.data.category}</a></p>
+    <ul class="tags">{post.data.tags.map((tag) => <li><a href={`/blog/tag/${taxonomySlug(tag)}/`}>#{tag}</a></li>)}</ul>
+    {translated && <a class="translation" href={postUrl(translated)} lang={translated.data.language} rel="alternate">{en ? 'Versão portuguesa' : 'English version'} →</a>}
+    <img class="article-cover" src={post.data.image} alt={`${en ? 'Placeholder illustration' : 'Ilustração de teste'}: ${post.data.title}`} width="1200" height="675" />
+    <div class="prose"><Content /></div>
+  </article>
+</BaseLayout>
