@@ -1,0 +1,30 @@
+nv# Astro + Content Collections — protótipo
+
+Blog estático isolado para avaliar publicação de Markdown, sem migrar o website atual. Inclui três pares PT/EN com textos e imagens identificados como placeholders.
+
+Requisito: Node >= 22.12.0 e npm >= 9.6.5. O lockfile fixa as versões instaladas.
+
+```sh
+npm ci
+npm run dev
+```
+
+Abrir o endereço indicado pelo Astro (normalmente `http://localhost:4321`).
+
+| Comando | Finalidade |
+| --- | --- |
+| `npm run dev` | Desenvolvimento com atualização automática |
+| `npm run check` | Diagnósticos Astro/TypeScript e schema |
+| `npm run build` | Validação de conteúdo e geração estática em `dist/` |
+| `npm run preview` | Servir o resultado do build |
+| `npm run test:content` | Testar publicação, drafts e rejeição de conteúdo inválido; repor build válido |
+
+Guia editorial: [HOW-TO-ADD-ARTICLE.md](HOW-TO-ADD-ARTICLE.md).
+
+Resultados e limitações: [PROTOTYPE-REPORT.md](PROTOTYPE-REPORT.md).
+
+API atual: coleção em `src/content.config.ts`, loader `glob()` de `astro/loaders`, Zod de `astro/zod` e `render(post)` de `astro:content`. Não usa as APIs antigas `src/content/config.ts`, `type: "content"` ou `post.render()`.
+
+CSS simples, tema do sistema, componentes Astro e TypeScript do template mínimo. RSS e sitemap usam integrações oficiais. O domínio de teste é configurável por `SITE_URL`; a configuração inicial usa localhost.
+
+Sem CMS, MDX, frameworks de UI, backend, autenticação, base de dados, integração automática com agentes ou deploy.

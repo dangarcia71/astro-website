@@ -4,7 +4,7 @@ slug: "ia-local-quando-faz-sentido"
 date: "2026-10-08"
 excerpt: "Placeholder para testar um título comprido, tags com acentos e uma categoria partilhada."
 category: "Inteligência Artificial"
-tags: ["IA local", "Modelos de linguagem", "Automação editorial"]
+tags: ["IA local"]
 image: "/images/blog/local-ai-placeholder.svg"
 language: "pt-PT"
 translation: "local-ai-when-does-it-make-sense"

@@ -4,7 +4,7 @@ slug: "anatomy-of-a-skill"
 date: "2026-10-12"
 excerpt: "A placeholder to test instructions, structure and publishing a Markdown article."
 category: "Inteligência Artificial"
-tags: ["Astro", "Skills", "Automação editorial"]
+tags: ["Anatomy"]
 image: "/images/blog/skill-placeholder.svg"
 language: "en-GB"
 translation: "anatomia-de-uma-skill"

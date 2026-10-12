@@ -4,7 +4,7 @@ slug: "do-localhost-ao-telemovel"
 date: "2026-10-10"
 excerpt: "Placeholder para testar um segundo tema e a ligação entre versões portuguesa e inglesa."
 category: "Desenvolvimento Web"
-tags: ["Astro", "Desenvolvimento Web", "Testes móveis"]
+tags: ["Localhost"]
 image: "/images/blog/mobile-placeholder.svg"
 language: "pt-PT"
 translation: "from-localhost-to-mobile"

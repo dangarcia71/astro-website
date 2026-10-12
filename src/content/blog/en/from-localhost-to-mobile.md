@@ -4,7 +4,7 @@ slug: "from-localhost-to-mobile"
 date: "2026-10-10"
 excerpt: "A placeholder to test a second topic and the connection between Portuguese and English versions."
 category: "Desenvolvimento Web"
-tags: ["Astro", "Desenvolvimento Web", "Testes móveis"]
+tags: ["Localhost"]
 image: "/images/blog/mobile-placeholder.svg"
 language: "en-GB"
 translation: "do-localhost-ao-telemovel"
