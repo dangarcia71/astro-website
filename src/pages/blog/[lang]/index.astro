@@ -1,0 +1,15 @@
+---
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import { publishedPosts, type Post } from '../../../lib/blog';
+export async function getStaticPaths() {
+  const posts = await publishedPosts();
+  return [
+    { params: { lang: 'pt' }, props: { language: 'pt-PT', posts: posts.filter((post) => post.data.language === 'pt-PT') } },
+    { params: { lang: 'en' }, props: { language: 'en-GB', posts: posts.filter((post) => post.data.language === 'en-GB') } },
+  ];
+}
+interface Props { language: 'pt-PT' | 'en-GB'; posts: Post[] }
+const { language, posts } = Astro.props;
+const en = language === 'en-GB';
+---
+<BlogLayout title={en ? 'Articles in English' : 'Artigos em português'} description={en ? 'Test placeholders, ordered from newest to oldest.' : 'Placeholders de teste, do mais recente para o mais antigo.'} posts={posts} language={language} />

@@ -1,0 +1,23 @@
+---
+import { postUrl, dateLabel, taxonomySlug, type Post } from '../lib/blog';
+interface Props { posts: Post[] }
+const { posts } = Astro.props;
+---
+<ul class="posts">
+  {posts.map((post) => (
+    <li>
+      <article class="post-card" lang={post.data.language}>
+        <a href={postUrl(post)} aria-label={post.data.title}>
+          <img src={post.data.image} alt={`Placeholder: ${post.data.title}`} width="1200" height="675" loading="lazy" />
+        </a>
+        <div class="card-content">
+          <div class="meta"><time datetime={post.data.date.toISOString()}>{dateLabel(post)}</time> · {post.data.language === 'pt-PT' ? 'Português' : 'English'}</div>
+          <h2><a href={postUrl(post)}>{post.data.title}</a></h2>
+          <p>{post.data.excerpt}</p>
+          <a href={`/blog/category/${taxonomySlug(post.data.category)}/`}>{post.data.category}</a>
+          <ul class="tags">{post.data.tags.map((tag) => <li><a href={`/blog/tag/${taxonomySlug(tag)}/`}>#{tag}</a></li>)}</ul>
+        </div>
+      </article>
+    </li>
+  ))}
+</ul>

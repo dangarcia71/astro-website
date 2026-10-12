@@ -1,0 +1,14 @@
+---
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import { publishedPosts, taxonomySlug, type Post } from '../../../lib/blog';
+export async function getStaticPaths() {
+  const posts = await publishedPosts();
+  return [...new Set(posts.flatMap((post) => post.data.tags))].map((tag) => ({
+    params: { tag: taxonomySlug(tag) },
+    props: { tag, posts: posts.filter((post) => post.data.tags.includes(tag)) },
+  }));
+}
+interface Props { tag: string; posts: Post[] }
+const { tag, posts } = Astro.props;
+---
+<BlogLayout title={`Tag: ${tag}`} description="Artigos com esta tag, em português e inglês." posts={posts} />

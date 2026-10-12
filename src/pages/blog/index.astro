@@ -1,0 +1,6 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import { publishedPosts } from '../../lib/blog';
+const posts = await publishedPosts();
+---
+<BlogLayout title="Artigos de teste" description="Três temas, dois idiomas. Conteúdo placeholder, organizado por data, categoria e tags." posts={posts} />

@@ -1,0 +1,17 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PostList from '../components/PostList.astro';
+import type { Post } from '../lib/blog';
+interface Props { title: string; description: string; posts: Post[]; language?: 'pt-PT' | 'en-GB' }
+const { title, description, posts, language = 'pt-PT' } = Astro.props;
+---
+<BaseLayout title={title} description={description} language={language}>
+  <div class="intro"><span class="eyebrow">BLOG · MARKDOWN</span><h1>{title}</h1><p>{description}</p></div>
+  <nav class="filters" aria-label={language === 'en-GB' ? 'Blog language' : 'Idioma do blog'}>
+    <a href="/blog/" aria-current={Astro.url.pathname === '/blog/' ? 'page' : undefined}>PT + EN</a>
+    <a href="/blog/pt/" lang="pt-PT" aria-current={Astro.url.pathname === '/blog/pt/' ? 'page' : undefined}>Português</a>
+    <a href="/blog/en/" lang="en-GB" aria-current={Astro.url.pathname === '/blog/en/' ? 'page' : undefined}>English</a>
+    <a href="/rss.xml">RSS</a>
+  </nav>
+  <PostList posts={posts} />
+</BaseLayout>

@@ -1,7 +1,7 @@
 ---
 title: "Anatomia de uma Skill"
 slug: "anatomia-de-uma-skill"
-date: 2026-10-12
+date: "2026-10-12"
 excerpt: "Placeholder para testar instruções, estrutura e publicação de um artigo em Markdown."
 category: "Inteligência Artificial"
 tags: ["Astro", "Skills", "Automação editorial"]

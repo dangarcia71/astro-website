@@ -1,0 +1,14 @@
+---
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import { publishedPosts, taxonomySlug, type Post } from '../../../lib/blog';
+export async function getStaticPaths() {
+  const posts = await publishedPosts();
+  return [...new Set(posts.map((post) => post.data.category))].map((category) => ({
+    params: { category: taxonomySlug(category) },
+    props: { category, posts: posts.filter((post) => post.data.category === category) },
+  }));
+}
+interface Props { category: string; posts: Post[] }
+const { category, posts } = Astro.props;
+---
+<BlogLayout title={`Categoria: ${category}`} description="Artigos desta categoria, em português e inglês." posts={posts} />
